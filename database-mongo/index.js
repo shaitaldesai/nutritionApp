@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/test');
+mongoose.connect('mongodb://localhost/nutrition');
 
 var db = mongoose.connection;
 
@@ -11,15 +11,28 @@ db.once('open', function() {
   console.log('mongoose connected successfully');
 });
 
-var itemSchema = mongoose.Schema({
-  quantity: Number,
-  description: String
+var UserSchema = mongoose.Schema({
+  // username: Number,
+  // password: String,
+  food_id: {type: String, index: {unique: true}},
+  foodName: String,
+  weight: String,
+  calories: String,
+  sugars: String,
+  protein: String,
+  fat: String,
+  carbs: String
 });
 
-var Item = mongoose.model('Item', itemSchema);
+var User = mongoose.model('User', UserSchema);
+
+var save = function(data, callback) {
+  var newData = new User(data);
+  newData.save(callback);
+}
 
 var selectAll = function(callback) {
-  Item.find({}, function(err, items) {
+  User.find({}, function(err, items) {
     if(err) {
       callback(err, null);
     } else {
@@ -29,3 +42,4 @@ var selectAll = function(callback) {
 };
 
 module.exports.selectAll = selectAll;
+module.exports.save = save;

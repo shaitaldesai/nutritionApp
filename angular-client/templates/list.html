@@ -1,5 +1,3 @@
 <div>
-  <h4> List Component </h4>
-  There are {{$ctrl.items.length}} items.
-  <list-item ng-repeat="item in $ctrl.items" item=item />
+  <list-item ng-repeat="item in $ctrl.items track by $index" item=item />
 </div>

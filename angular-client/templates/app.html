@@ -1,5 +1,37 @@
-<div>
+<div ng-style='$ctrl.myStyle'>
+	<div ng-style='$ctrl.logoStyle'>
+	  <h1 ng-style='$ctrl.titleStyle'>Nutrition App</h1>
+  </div>
+	<hr/>
+	<div>
+			<input placeholder='username' ng-model='$ctrl.input.username'>
+			<input placeholder='password' ng-model='$ctrl.input.password'>
+			<button id='login' ng-click='$ctrl.login()'>login</button> 			
+	</div>
+	<hr/>
   <div>
-    <list items="$ctrl.items"/>
+  	<input placeholder='Food Item' ng-model='searchQ'> 
+  	<button ng-click='$ctrl.getAll(searchQ)'><strong>Get Nutrition Information</strong></button>
+  	<button ng-click='$ctrl.save()'><strong>Save</strong></button>
+	<div>
+	  <button ng-style='$ctrl.buttonStyle' ng-click='$ctrl.getNames()'><strong>View recently saved items</strong></button>
+	  <div >
+    <p ng-style='$ctrl.show' ng-click='$ctrl.getNdbno(name.ndbno)' ng-repeat='name in $ctrl.names track by $index' name='name'>
+	      {{name.name}}
+		</p>
+	<div ng-style='$ctrl.hidden'>
+		  <h4>{{$ctrl.fresh[0].name}} </h4>
+		  <strong>Weight</strong>: 100g <br>
+		  <strong>Calories</strong>: {{$ctrl.fresh[0].nutrients[0].gm}}{{$ctrl.fresh[0].nutrients[0].unit}}<br>
+		  <strong>Sugars</strong>: {{$ctrl.fresh[0].nutrients[1].gm}}{{$ctrl.fresh[0].nutrients[1].unit}}<br>
+		  <strong>Protein</strong>: {{$ctrl.fresh[0].nutrients[2].gm}}{{$ctrl.fresh[0].nutrients[2].unit}}<br>
+		  <strong>Fat</strong>: {{$ctrl.fresh[0].nutrients[3].gm}}{{$ctrl.fresh[0].nutrients[3].unit}}<br>
+		  <strong>Carbohydrate</strong>: {{$ctrl.fresh[0].nutrients[4].gm}}{{$ctrl.fresh[0].nutrients[4].unit}}<br>
+		</div>
+	</div>
+<!--		  <showName ng-repeat='name in $ctrl.names track by $index' name='name' />
+	</div>
+<clickedItem fresh='$ctrl.fresh' /> -->
+  	<list items="$ctrl.items"/>
   </div>
 </div>
