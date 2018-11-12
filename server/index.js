@@ -16,7 +16,7 @@ app.use(express.static(__dirname + '/../node_modules'));
 app.use(bodyParser.json());
 
 app.get('/items', function (req, res, next) {
-	var query = req.query.q;// why did req.param.q not work?
+	var query = req.query.q;// why did req.param.q not work? -param is depricated
  helper.getResponse(query, (data) => {
  	res.json(data);
  });
@@ -34,6 +34,7 @@ app.post('/items', function (req, res, next) {
   var foodName = req.body[0].name;
   var foodWeight = req.body[0].weight;
   var Data = req.body[0].nutrients;
+  console.log(Data);
   var foodData = {
     food_id: foodId,
     foodName: foodName,
@@ -69,9 +70,27 @@ app.get('/names', function (req, res, next) {
   });
 });
 
-app.post('/login', function (req, res) {
+app.post('/signup', function (req, res) {
   var identifiers = req.body;
   console.log(identifiers);
+  database.saveUser(identifiers, (err, userData) => {
+    if (err) {
+      console.log(err);
+    }
+    res.sendStatus(201).redirect('/login');
+  });
+});
+
+app.get('/login', function (req, res) {
+  var identifiers = req.body;
+  console.log(identifiers);
+  var pw = {password: identifiers.password};
+  database.saveUser(pw, (err, user) => {
+    if (err) {
+      console.log(err);
+    }
+    res.sendStatus(200).redirect('/');
+  });
 });
 
 app.listen(3000, function() {

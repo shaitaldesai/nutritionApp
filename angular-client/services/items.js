@@ -44,7 +44,7 @@ angular.module('app')
   this.post = function (nutrInfo, callback) {
     // console.log('SERVICE', identifiers);
     var nutrInfo = JSON.stringify(nutrInfo);
-    // console.log('JSON', identifiers);
+    // console.log('JSON', nutrInfo);
     $http({
       method: 'POST',
       url:  '/items', 
@@ -61,13 +61,13 @@ angular.module('app')
       console.log(err);
     });
   };
-  this.login = function (identifiers) {
+  this.signup = function (identifiers) {
     // console.log('SERVICE', identifiers);
     var identifiers = JSON.stringify(identifiers);
     // console.log('JSON', identifiers);
     $http({
       method: 'POST',
-      url:  '/login', 
+      url:  '/signup', 
       data: identifiers,
       contentType: 'application/json',
       timeout: 4000

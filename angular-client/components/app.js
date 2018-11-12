@@ -18,6 +18,18 @@ angular.module('app')
     height: '100px',
     'padding-top': '7%',
   }
+  this.hidden = {
+    display: 'none'
+  };
+  this.show = {
+    display: 'block'
+  };
+
+  // this.user = {
+  //   username: ,
+  //   password: ,
+  // };
+
   this.savedMessage = () => {
     alert('Saved  Nutrition Info!');
   }
@@ -31,16 +43,6 @@ angular.module('app')
       this.names = data;
       console.log(this.names);
     });    
-  }
-  // this.changeClass = function () {
-  //   this.hidden.display = 'none'? 'block' : 'none';
-  //   // this.show.display = 'block'? 'none' : 'block';
-  //     };
-  this.hidden = {
-    display: 'none'
-  };
-  this.show = {
-    display: 'block'
   };
   this.getNdbno = (ndbno) => {
     itemsService.getByNdbno(ndbno, (message) => {
@@ -55,10 +57,10 @@ angular.module('app')
   this.save = () => {
     itemsService.post(this.items, this.savedMessage);
   }
-  this.login = () => {
-  	console.log('LOGIN', this.input);
-    itemsService.login(this.input);
-  }
+  // this.signup = () => {
+  // 	console.log('SIGNUP', this.user);
+  //   itemsService.signup(this.user);
+  // }
 })
 .component('app', {
   bindings: {},
